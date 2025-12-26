@@ -2,59 +2,59 @@
 const meditations = [
     {
         id: 1,
-        date: "October 4, 2025",
+        date: "04/10/2025",
         description: "Sense of wonder beyond complexity",
         audioSrc: "audio/2025-10-04.m4a",
-        duration: "30 min"
+        duration: "30 דקות"
     },
     {
         id: 2,
-        date: "October 15, 2025",
+        date: "15/10/2025",
         description: "Connecting to the vast quiet underneath it all",
         audioSrc: "audio/2025-10-15.m4a",
-        duration: "30 min"
+        duration: "30 דקות"
     },
     {
         id: 3,
-        date: "October 2, 2025",
+        date: "02/10/2025",
         description: "Earth’s support is melting doubts",
         audioSrc: "audio/2025-10-02.m4a",
-        duration: "30 min"
+        duration: "30 דקות"
     },
     {
         id: 4,
-        date: "March 1, 2025",
+        date: "01/03/2025",
         description: "הר (עם שועל)",
         audioSrc: "audio/2025-03-01.m4a",
-        duration: "32 min"
+        duration: "32 דקות"
     },
     {
         id: 5,
-        date: "November 20, 2025",
+        date: "20/11/2025",
         description: "Gathering the parts",
         audioSrc: "audio/2025-11-20.m4a",
-        duration: "31 min"
+        duration: "31 דקות"
     },
     {
         id: 6,
-        date: "November 13, 2025",
+        date: "13/11/2025",
         description: "Relaxing through Trust",
         audioSrc: "audio/2025-11-13.m4a",
-        duration: "32 min"
+        duration: "32 דקות"
     },
     {
         id: 7,
-        date: "November 1, 2025",
+        date: "01/11/2025",
         description: "A mind of quiet sea and self acceptance",
         audioSrc: "audio/2025-11-01.m4a",
-        duration: "33 min"
+        duration: "33 דקות"
     },
     {
         id: 8,
-        date: "October 30, 2025",
+        date: "30/10/2025",
         description: "Letting thoughts be and Metta sentences",
         audioSrc: "audio/2025-10-30.m4a",
-        duration: "25 min"
+        duration: "25 דקות"
     },
 ];
 
@@ -97,7 +97,7 @@ function openPlayer(meditationId) {
     if (!currentMeditation) return;
     
     // Update player UI
-    playerTitle.textContent = `Meditation`; // ${currentMeditation.id}`;
+    playerTitle.textContent = "מדיטציה"; // ${currentMeditation.id}`;
     playerDate.textContent = currentMeditation.date;
     playerDescription.textContent = currentMeditation.description;
     
