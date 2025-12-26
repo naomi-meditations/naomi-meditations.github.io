@@ -148,8 +148,8 @@ function setupAudioEventListeners() {
     
     // Update current time and seek bar as audio plays
     audioPlayer.addEventListener('timeupdate', () => {
-        currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
         if (!isSeeking) {
+            currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
             seekBar.value = audioPlayer.currentTime;
         }
     });
@@ -198,7 +198,12 @@ function togglePlayPause() {
 
 // Update play/pause button icon
 function updatePlayPauseButton() {
-    playPauseButton.textContent = audioPlayer.paused ? '▶' : '⏸';
+    const icon = playPauseButton.querySelector('.play-icon');
+    if (audioPlayer.paused) {
+        icon.classList.remove('paused');
+    } else {
+        icon.classList.add('paused');
+    }
 }
 
 // Seek forward 15 seconds
