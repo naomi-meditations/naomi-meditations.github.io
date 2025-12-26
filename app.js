@@ -299,9 +299,11 @@ function openShareModal() {
         navigator.share({
             title: title,
             url: url
-        }).catch(() => {
-            // User cancelled or error - fall back to modal
-            showShareModal(url);
+        }).catch((error) => {
+            // Only fall back to modal if it's not a user cancel
+            if (error.name !== 'AbortError') {
+                showShareModal(url);
+            }
         });
     } else {
         // Desktop - show modal with copy
