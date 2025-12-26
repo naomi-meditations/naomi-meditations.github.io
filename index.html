@@ -35,7 +35,11 @@
                 
                 <div class="progress-container">
                     <span id="current-time" class="time">0:00</span>
-                    <input type="range" id="seek-bar" class="seek-bar" value="0" min="0" max="100">
+                    <div class="seek-bar-wrapper">
+                        <div class="seek-bar-track"></div>
+                        <div id="speech-segments" class="speech-segments"></div>
+                        <input type="range" id="seek-bar" class="seek-bar" value="0" min="0" max="100">
+                    </div>
                     <span id="duration" class="time">0:00</span>
                 </div>
                 

@@ -25,8 +25,9 @@ const meditations = [
         id: 4,
         date: "01/03/2025",
         description: "הר (עם שועל)",
-        audioSrc: "audio/2025-03-01.m4a",
-        duration: "32 דקות"
+        audioSrc: "audio/2025-03-01_processed.m4a",
+        duration: "32 דקות",
+        speechSegments: [[0, 107.6], [129.7, 163.6], [176.5, 200.4], [217.2, 220.1], [336.5, 372.5], [389.1, 406.8], [419.7, 463.2], [639.9, 650.6], [661.6, 707.6], [720.3, 722.3], [732.7, 734.1], [763.2, 766.3], [790.0, 799.5], [811.7, 829.8], [1097.8, 1154.0], [1179.3, 1219.5], [1676.5, 1693.5], [1717.0, 1719.0], [1777.6, 1813.7], [1825.9, 1830.6]]
     },
     {
         id: 5,
@@ -70,6 +71,7 @@ const durationDisplay = document.getElementById('duration');
 const playerTitle = document.getElementById('player-title');
 const playerDate = document.getElementById('player-date');
 const playerDescription = document.getElementById('player-description');
+const speechSegmentsContainer = document.getElementById('speech-segments');
 
 let currentMeditation = null;
 let isSeeking = false;
@@ -107,6 +109,9 @@ function openPlayer(meditationId) {
     // Reset player state
     resetPlayerUI();
     
+    // Render speech segments after duration is known
+    audioPlayer.addEventListener('loadedmetadata', renderSpeechSegments, { once: true });
+    
     // Switch pages
     meditationList.classList.remove('active');
     playerPage.classList.add('active');
@@ -128,6 +133,27 @@ function resetPlayerUI() {
     currentTimeDisplay.textContent = '0:00';
     durationDisplay.textContent = '0:00';
     updatePlayPauseButton();
+    speechSegmentsContainer.innerHTML = '';
+}
+
+// Render speech segments on the seek bar
+function renderSpeechSegments() {
+    speechSegmentsContainer.innerHTML = '';
+    
+    if (!currentMeditation || !currentMeditation.speechSegments) return;
+    
+    const duration = audioPlayer.duration;
+    if (!duration || !isFinite(duration)) return;
+    
+    currentMeditation.speechSegments.forEach(([start, end]) => {
+        const segment = document.createElement('div');
+        segment.className = 'speech-segment';
+        const leftPercent = (start / duration) * 100;
+        const widthPercent = ((end - start) / duration) * 100;
+        segment.style.left = `${leftPercent}%`;
+        segment.style.width = `${widthPercent}%`;
+        speechSegmentsContainer.appendChild(segment);
+    });
 }
 
 // Setup audio event listeners

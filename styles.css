@@ -143,15 +143,56 @@ header h1 {
     min-width: 45px;
 }
 
-.seek-bar {
+.seek-bar-wrapper {
     flex: 1;
+    position: relative;
+    height: 6px;
+}
+
+.seek-bar-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: #e0dbd3;
+    border-radius: 3px;
+    z-index: 1;
+}
+
+.speech-segments {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.speech-segment {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: #7a9a7d;
+}
+
+.seek-bar {
+    width: 100%;
     height: 6px;
     -webkit-appearance: none;
     appearance: none;
-    background: #e0dbd3;
     border-radius: 3px;
     outline: none;
     cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background: transparent;
+    z-index: 1;
 }
 
 .seek-bar::-webkit-slider-thumb {
