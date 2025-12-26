@@ -286,8 +286,30 @@ const shareModal = document.getElementById('share-modal');
 const shareUrlInput = document.getElementById('share-url');
 const copyConfirmation = document.getElementById('copy-confirmation');
 
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
 function openShareModal() {
     const url = window.location.href;
+    const title = currentMeditation ? `מדיטציה - ${currentMeditation.description}` : 'מדיטציה';
+    
+    // Use native share on mobile if available
+    if (isMobileDevice() && navigator.share) {
+        navigator.share({
+            title: title,
+            url: url
+        }).catch(() => {
+            // User cancelled or error - fall back to modal
+            showShareModal(url);
+        });
+    } else {
+        // Desktop - show modal with copy
+        showShareModal(url);
+    }
+}
+
+function showShareModal(url) {
     shareUrlInput.value = url;
     copyConfirmation.textContent = '';
     shareModal.classList.add('active');
