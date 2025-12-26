@@ -281,5 +281,35 @@ function formatTime(seconds) {
     return `${mins}:${secs.toString().padStart(2, '0')}`;
 }
 
+// Share modal functions
+const shareModal = document.getElementById('share-modal');
+const shareUrlInput = document.getElementById('share-url');
+const copyConfirmation = document.getElementById('copy-confirmation');
+
+function openShareModal() {
+    const url = window.location.href;
+    shareUrlInput.value = url;
+    copyConfirmation.textContent = '';
+    shareModal.classList.add('active');
+    
+    // Auto-copy to clipboard
+    copyShareUrl();
+}
+
+function closeShareModal(event) {
+    if (!event || event.target === shareModal) {
+        shareModal.classList.remove('active');
+    }
+}
+
+function copyShareUrl() {
+    navigator.clipboard.writeText(shareUrlInput.value).then(() => {
+        copyConfirmation.textContent = 'הקישור הועתק!';
+    }).catch(() => {
+        shareUrlInput.select();
+        copyConfirmation.textContent = 'סמן והעתק את הקישור';
+    });
+}
+
 // Initialize on page load
 init();

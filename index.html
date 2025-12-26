@@ -60,7 +60,24 @@
                         </svg>
                     </button>
                 </div>
+                
+                <button class="share-button" onclick="openShareModal()">
+                    שיתוף
+                </button>
             </div>
+        </div>
+    </div>
+
+    <!-- Share Modal -->
+    <div id="share-modal" class="modal-overlay" onclick="closeShareModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h3>שיתוף מדיטציה</h3>
+            <div class="share-url-container">
+                <input type="text" id="share-url" class="share-url-input" readonly>
+                <button class="copy-button" onclick="copyShareUrl()">העתק</button>
+            </div>
+            <p id="copy-confirmation" class="copy-confirmation"></p>
+            <button class="modal-close-button" onclick="closeShareModal()">סגור</button>
         </div>
     </div>
 
