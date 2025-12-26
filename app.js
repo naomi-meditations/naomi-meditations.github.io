@@ -2,28 +2,60 @@
 const meditations = [
     {
         id: 1,
-        date: "December 20, 2024",
-        description: "A gentle morning meditation to start your day with clarity and peace.",
-        audioSrc: "audio/meditation1.mp3"
+        date: "October 4, 2025",
+        description: "Sense of wonder beyond complexity",
+        audioSrc: "audio/2025-10-04.m4a",
+        duration: "30 min"
     },
     {
         id: 2,
-        date: "December 15, 2024",
-        description: "Deep relaxation for releasing tension and finding inner calm.",
-        audioSrc: "audio/meditation2.mp3"
+        date: "October 15, 2025",
+        description: "Connecting to the vast quiet underneath it all",
+        audioSrc: "audio/2025-10-15.m4a",
+        duration: "30 min"
     },
     {
         id: 3,
-        date: "December 10, 2024",
-        description: "Gratitude practice to cultivate appreciation and joy.",
-        audioSrc: "audio/meditation3.mp3"
+        date: "October 2, 2025",
+        description: "Earth’s support is melting doubts",
+        audioSrc: "audio/2025-10-02.m4a",
+        duration: "30 min"
     },
     {
         id: 4,
         date: "March 1, 2025",
         description: "הר (עם שועל)",
-        audioSrc: "audio/2025-03-01.m4a"
-    }
+        audioSrc: "audio/2025-03-01.m4a",
+        duration: "32 min"
+    },
+    {
+        id: 5,
+        date: "November 20, 2025",
+        description: "Gathering the parts",
+        audioSrc: "audio/2025-11-20.m4a",
+        duration: "31 min"
+    },
+    {
+        id: 6,
+        date: "November 13, 2025",
+        description: "Relaxing through Trust",
+        audioSrc: "audio/2025-11-13.m4a",
+        duration: "32 min"
+    },
+    {
+        id: 7,
+        date: "November 1, 2025",
+        description: "A mind of quiet sea and self acceptance",
+        audioSrc: "audio/2025-11-01.m4a",
+        duration: "33 min"
+    },
+    {
+        id: 8,
+        date: "October 30, 2025",
+        description: "Letting thoughts be and Metta sentences",
+        audioSrc: "audio/2025-10-30.m4a",
+        duration: "25 min"
+    },
 ];
 
 // DOM Elements
@@ -50,9 +82,9 @@ function init() {
 
 // Render meditation cards on the main page
 function renderMeditationCards() {
-    meditationsGrid.innerHTML = meditations.map(meditation => `
+    meditationsGrid.innerHTML = meditations.toSorted((a, b) => new Date(b.date) - new Date(a.date)).map(meditation => `
         <div class="meditation-card" onclick="openPlayer(${meditation.id})">
-            <div class="date">${meditation.date}</div>
+            <div class="date">${meditation.date} · ${meditation.duration}</div>
             <div class="description">${meditation.description}</div>
         </div>
     `).join('');
@@ -65,7 +97,7 @@ function openPlayer(meditationId) {
     if (!currentMeditation) return;
     
     // Update player UI
-    playerTitle.textContent = `Meditation ${currentMeditation.id}`;
+    playerTitle.textContent = `Meditation`; // ${currentMeditation.id}`;
     playerDate.textContent = currentMeditation.date;
     playerDescription.textContent = currentMeditation.description;
     

@@ -189,7 +189,6 @@ header h1 {
     border: none;
     cursor: pointer;
     transition: transform 0.1s ease, background 0.2s ease;
-    font-weight: 600;
 }
 
 .control-button:hover {
@@ -224,7 +223,7 @@ header h1 {
     border-radius: 50%;
     background: #e8e2d9;
     color: #5c6d5e;
-    font-size: 0.9rem;
+    font-size: 1.8rem;
 }
 
 .seek-button:hover {
