@@ -20,9 +20,9 @@ const meditations = [
     },
     {
         id: 4,
-        date: "December 5, 2024",
-        description: "Evening wind-down meditation for restful sleep.",
-        audioSrc: "audio/meditation4.mp3"
+        date: "March 1, 2025",
+        description: "הר (עם שועל)",
+        audioSrc: "audio/2025-03-01.m4a"
     }
 ];
 
@@ -40,6 +40,7 @@ const playerDate = document.getElementById('player-date');
 const playerDescription = document.getElementById('player-description');
 
 let currentMeditation = null;
+let isSeeking = false;
 
 // Initialize the app
 function init() {
@@ -104,11 +105,21 @@ function setupAudioEventListeners() {
         durationDisplay.textContent = formatTime(audioPlayer.duration);
         seekBar.max = audioPlayer.duration;
     });
+
+    // Also listen for durationchange in case duration updates later (for some formats)
+    audioPlayer.addEventListener('durationchange', () => {
+        if (audioPlayer.duration && isFinite(audioPlayer.duration)) {
+            durationDisplay.textContent = formatTime(audioPlayer.duration);
+            seekBar.max = audioPlayer.duration;
+        }
+    });
     
     // Update current time and seek bar as audio plays
     audioPlayer.addEventListener('timeupdate', () => {
         currentTimeDisplay.textContent = formatTime(audioPlayer.currentTime);
-        seekBar.value = audioPlayer.currentTime;
+        if (!isSeeking) {
+            seekBar.value = audioPlayer.currentTime;
+        }
     });
     
     // Handle audio ending
@@ -116,9 +127,30 @@ function setupAudioEventListeners() {
         updatePlayPauseButton();
     });
     
-    // Handle seek bar input
+    // Handle seek bar interaction
+    seekBar.addEventListener('mousedown', () => {
+        isSeeking = true;
+    });
+
+    seekBar.addEventListener('touchstart', () => {
+        isSeeking = true;
+    });
+
     seekBar.addEventListener('input', () => {
-        audioPlayer.currentTime = seekBar.value;
+        currentTimeDisplay.textContent = formatTime(seekBar.value);
+    });
+
+    seekBar.addEventListener('change', () => {
+        audioPlayer.currentTime = parseFloat(seekBar.value);
+        isSeeking = false;
+    });
+
+    seekBar.addEventListener('mouseup', () => {
+        isSeeking = false;
+    });
+
+    seekBar.addEventListener('touchend', () => {
+        isSeeking = false;
     });
 }
 
@@ -139,7 +171,10 @@ function updatePlayPauseButton() {
 
 // Seek forward 15 seconds
 function seekForward() {
-    audioPlayer.currentTime = Math.min(audioPlayer.currentTime + 15, audioPlayer.duration || 0);
+    const duration = audioPlayer.duration;
+    if (duration && isFinite(duration)) {
+        audioPlayer.currentTime = Math.min(audioPlayer.currentTime + 15, duration);
+    }
 }
 
 // Seek backward 15 seconds
