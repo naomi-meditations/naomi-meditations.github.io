@@ -55,7 +55,7 @@ const meditations = [
         date: "30/10/2025",
         description: "Letting thoughts be and Metta sentences",
         audioSrc: "audio/2025-10-30.m4a",
-        duration: "25 דקות"
+        duration: "33 דקות"
     },
 ];
 
