@@ -80,6 +80,23 @@ let isSeeking = false;
 function init() {
     renderMeditationCards();
     setupAudioEventListeners();
+    handleRouting();
+    
+    // Handle browser back/forward buttons
+    window.addEventListener('popstate', handleRouting);
+}
+
+// Handle URL routing
+function handleRouting() {
+    const hash = window.location.hash.slice(1); // Remove the '#'
+    if (hash) {
+        const meditationId = parseInt(hash, 10);
+        if (meditationId && meditations.find(m => m.id === meditationId)) {
+            openPlayer(meditationId, false); // Don't push state, we're responding to URL
+        }
+    } else {
+        showMainPage(false);
+    }
 }
 
 // Render meditation cards on the main page
@@ -93,10 +110,15 @@ function renderMeditationCards() {
 }
 
 // Open the player page for a specific meditation
-function openPlayer(meditationId) {
+function openPlayer(meditationId, updateUrl = true) {
     currentMeditation = meditations.find(m => m.id === meditationId);
     
     if (!currentMeditation) return;
+    
+    // Update URL
+    if (updateUrl) {
+        history.pushState({ meditationId }, '', `#${meditationId}`);
+    }
     
     // Update player UI
     playerTitle.textContent = "מדיטציה"; // ${currentMeditation.id}`;
@@ -118,10 +140,15 @@ function openPlayer(meditationId) {
 }
 
 // Show the main page
-function showMainPage() {
+function showMainPage(updateUrl = true) {
     // Pause audio when going back
     audioPlayer.pause();
     updatePlayPauseButton();
+    
+    // Update URL
+    if (updateUrl) {
+        history.pushState({}, '', window.location.pathname);
+    }
     
     playerPage.classList.remove('active');
     meditationList.classList.add('active');
