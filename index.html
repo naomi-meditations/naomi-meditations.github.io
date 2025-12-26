@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guided Meditations</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Guided Meditations</h1>
+            <p class="subtitle">by Naomi Gerstein</p>
+        </header>
+
+        <!-- Main page with meditation list -->
+        <main id="meditation-list" class="page active">
+            <div class="meditations-grid">
+                <!-- Meditation cards will be inserted here by JavaScript -->
+            </div>
+        </main>
+
+        <!-- Player page -->
+        <div id="player-page" class="page">
+            <button class="back-button" onclick="showMainPage()">
+                ← Back to Meditations
+            </button>
+            
+            <div class="player-container">
+                <h2 id="player-title" class="player-title"></h2>
+                <p id="player-date" class="player-date"></p>
+                <p id="player-description" class="player-description"></p>
+                
+                <audio id="audio-player"></audio>
+                
+                <div class="progress-container">
+                    <span id="current-time" class="time">0:00</span>
+                    <input type="range" id="seek-bar" class="seek-bar" value="0" min="0" max="100">
+                    <span id="duration" class="time">0:00</span>
+                </div>
+                
+                <div class="controls">
+                    <button class="control-button seek-button" onclick="seekBackward()">
+                        -15s
+                    </button>
+                    <button id="play-pause-button" class="control-button play-button" onclick="togglePlayPause()">
+                        ▶
+                    </button>
+                    <button class="control-button seek-button" onclick="seekForward()">
+                        +15s
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
