@@ -2,60 +2,63 @@
 const meditations = [
     {
         id: 1,
-        date: "04/10/2025",
-        description: "Sense of wonder beyond complexity",
-        audioSrc: "audio/2025-10-04.m4a",
-        duration: "30 דקות"
-    },
-    {
-        id: 2,
-        date: "15/10/2025",
-        description: "Connecting to the vast quiet underneath it all",
-        audioSrc: "audio/2025-10-15.m4a",
-        duration: "30 דקות"
-    },
-    {
-        id: 3,
-        date: "02/10/2025",
-        description: "Earth’s support is melting doubts",
-        audioSrc: "audio/2025-10-02.m4a",
-        duration: "30 דקות"
-    },
-    {
-        id: 4,
-        date: "01/03/2025",
+        date: "2025-03-01",
         description: "הר (עם שועל)",
         audioSrc: "audio/2025-03-01_processed.m4a",
         duration: "32 דקות",
         speechSegments: [[0, 107.6], [129.7, 163.6], [176.5, 200.4], [217.2, 220.1], [336.5, 372.5], [389.1, 406.8], [419.7, 463.2], [639.9, 650.6], [661.6, 707.6], [720.3, 722.3], [732.7, 734.1], [763.2, 766.3], [790.0, 799.5], [811.7, 829.8], [1097.8, 1154.0], [1179.3, 1219.5], [1676.5, 1693.5], [1717.0, 1719.0], [1777.6, 1813.7], [1825.9, 1830.6]]
     },
+    /// noisy - AI gave bad quality
+    // {
+    //     id: 3,
+    //     date: "2025-10-02",
+    //     description: "Earth’s support is melting doubts",
+    //     audioSrc: "audio/2025-10-02.m4a",
+    //     duration: "30 דקות"
+    // },
+    {
+        id: 2,
+        date: "2025-10-04",
+        description: "Sense of wonder beyond complexity",
+        audioSrc: "audio/2025-10-04_processed.m4a",
+        duration: "30 דקות"
+    },
+    /// barking
+    // {
+    //     id: 2,
+    //     date: "2025-10-15",
+    //     description: "Connecting to the vast quiet underneath it all",
+    //     audioSrc: "audio/2025-10-15.m4a",
+    //     duration: "30 דקות"
+    // },
+    {
+        id: 3,
+        date: "2025-10-30",
+        description: "Letting thoughts be and Metta sentences",
+        audioSrc: "audio/2025-10-30_processed.m4a",
+        duration: "33 דקות"
+    },
+    {
+        id: 4,
+        date: "2025-11-01",
+        description: "A mind of quiet sea and self acceptance",
+        audioSrc: "audio/2025-11-01_processed.m4a",
+        duration: "33 דקות"
+    },
+    /// speech volume is too low, unclear pronunciation in AI result
+    // {
+    //     id: 6,
+    //     date: "2025-11-13",
+    //     description: "Relaxing through Trust",
+    //     audioSrc: "audio/2025-11-13.m4a",
+    //     duration: "32 דקות"
+    // },
     {
         id: 5,
-        date: "20/11/2025",
+        date: "2025-11-20",
         description: "Gathering the parts",
-        audioSrc: "audio/2025-11-20.m4a",
+        audioSrc: "audio/2025-11-20_processed.m4a",
         duration: "31 דקות"
-    },
-    {
-        id: 6,
-        date: "13/11/2025",
-        description: "Relaxing through Trust",
-        audioSrc: "audio/2025-11-13.m4a",
-        duration: "32 דקות"
-    },
-    {
-        id: 7,
-        date: "01/11/2025",
-        description: "A mind of quiet sea and self acceptance",
-        audioSrc: "audio/2025-11-01.m4a",
-        duration: "33 דקות"
-    },
-    {
-        id: 8,
-        date: "30/10/2025",
-        description: "Letting thoughts be and Metta sentences",
-        audioSrc: "audio/2025-10-30.m4a",
-        duration: "33 דקות"
     },
 ];
 
@@ -103,7 +106,7 @@ function handleRouting() {
 function renderMeditationCards() {
     meditationsGrid.innerHTML = meditations.toSorted((a, b) => new Date(b.date) - new Date(a.date)).map(meditation => `
         <div class="meditation-card" onclick="openPlayer(${meditation.id})">
-            <div class="date">${meditation.date} · ${meditation.duration}</div>
+            <div class="date">${new Date(meditation.date).toLocaleDateString("en-GB")} · ${meditation.duration}</div>
             <div class="description">${meditation.description}</div>
         </div>
     `).join('');
