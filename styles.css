@@ -24,6 +24,20 @@ header {
     color: #5c6d5e;
 }
 
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.header-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 header h1 {
     font-size: 2.5rem;
     font-weight: 400;
@@ -230,7 +244,7 @@ header h1 {
 .player-description {
     font-size: 1.1rem;
     color: #5a5a5a;
-    margin-bottom: 40px;
+    margin-top: 40px;
     line-height: 1.6;
 }
 

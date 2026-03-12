@@ -9,8 +9,13 @@
 <body>
     <div class="container">
         <header>
-            <h1>מדיטציות</h1>
-            <p class="subtitle">בהנחיית נעמי גרשטיין</p>
+            <div class="header-content">
+                <img src="images/naomi.jpg" alt="נעמי גרשטיין" class="header-photo">
+                <div class="header-text">
+                    <h1>מדיטציות</h1>
+                    <p class="subtitle">בהנחיית נעמי גרשטיין</p>
+                </div>
+            </div>
         </header>
 
         <!-- Main page with meditation list -->
@@ -29,7 +34,6 @@
             <div class="player-container">
                 <h2 id="player-title" class="player-title"></h2>
                 <p id="player-date" class="player-date"></p>
-                <p id="player-description" class="player-description"></p>
                 
                 <audio id="audio-player"></audio>
                 
@@ -60,6 +64,8 @@
                         </svg>
                     </button>
                 </div>
+                
+                <p id="player-description" class="player-description"></p>
                 
                 <button class="share-button" onclick="openShareModal()">
                     שיתוף
