@@ -21,7 +21,8 @@ const meditations = [
         date: "2025-10-04",
         description: "Sense of wonder beyond complexity",
         audioSrc: "audio/2025-10-04_processed.m4a",
-        duration: "30 דקות"
+        duration: "30 דקות",
+        speechSegments: [[22.9, 62.8], [73.7, 84.2], [105.5, 130.5], [141.5, 151.5], [162.2, 164.1], [189.8, 212.3], [225.2, 230.2], [272.2, 292.8], [420.1, 486.3], [509.2, 526.8], [739.2, 754.6], [766.6, 768.7], [1369.2, 1394.0], [1778.2, 1778.7]]
     },
     /// barking
     // {
@@ -36,14 +37,16 @@ const meditations = [
         date: "2025-10-30",
         description: "Letting thoughts be and Metta sentences",
         audioSrc: "audio/2025-10-30_processed.m4a",
-        duration: "33 דקות"
+        duration: "33 דקות",
+        speechSegments: [[32.8, 96.2], [109.1, 129.4], [157.9, 211.6], [225.0, 273.8], [370.9, 392.2], [412.0, 418.5], [437.9, 482.0], [849.2, 852.7], [956.9, 967.4], [1104.4, 1158.6], [1174.7, 1180.3], [1552.1, 1606.5], [1758.8, 1822.7], [1835.7, 1847.6], [1863.8, 1880.8], [1910.1, 1934.6], [1948.2, 1951.9]]
     },
     {
         id: 4,
         date: "2025-11-01",
         description: "A mind of quiet sea and self acceptance",
         audioSrc: "audio/2025-11-01_processed.m4a",
-        duration: "33 דקות"
+        duration: "33 דקות",
+        speechSegments: [[29.7, 127.8], [139.7, 156.8], [172.0, 179.5], [192.0, 214.9], [225.9, 231.8], [252.3, 257.1], [282.9, 294.4], [307.1, 330.8], [343.4, 347.8], [368.3, 379.2], [550.2, 696.1], [721.9, 723.2], [1030.2, 1055.5], [1275.8, 1314.9], [1327.2, 1350.6], [1499.1, 1567.5], [1579.5, 1586.0], [1646.6, 1691.5], [1738.3, 1768.0], [1815.9, 1842.6], [1863.5, 1879.0], [1889.5, 1922.88]]
     },
     /// speech volume is too low, unclear pronunciation in AI result
     // {
@@ -58,7 +61,8 @@ const meditations = [
         date: "2025-11-20",
         description: "Gathering the parts",
         audioSrc: "audio/2025-11-20_processed.m4a",
-        duration: "31 דקות"
+        duration: "31 דקות",
+        speechSegments: [[1.9, 82.2], [100.5, 195.2], [217.5, 240.2], [251.8, 274.8], [289.1, 309.1], [321.5, 342.5], [422.2, 447.0], [462.0, 464.3], [478.8, 482.1], [492.6, 504.9], [742.0, 762.0], [773.2, 775.8], [792.2, 826.5], [1338.9, 1374.9], [1403.6, 1420.6], [1464.8, 1500.3]]
     },
 ];
 
@@ -125,7 +129,7 @@ function openPlayer(meditationId, updateUrl = true) {
     
     // Update player UI
     playerTitle.textContent = "מדיטציה"; // ${currentMeditation.id}`;
-    playerDate.textContent = currentMeditation.date;
+    playerDate.textContent = new Date(currentMeditation.date).toLocaleDateString("en-GB");
     playerDescription.textContent = currentMeditation.description;
     
     // Set audio source
