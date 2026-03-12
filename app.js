@@ -81,7 +81,6 @@ const seekBar = document.getElementById('seek-bar');
 const currentTimeDisplay = document.getElementById('current-time');
 const durationDisplay = document.getElementById('duration');
 const playerTitle = document.getElementById('player-title');
-const playerDate = document.getElementById('player-date');
 const playerDescription = document.getElementById('player-description');
 const speechSegmentsContainer = document.getElementById('speech-segments');
 
@@ -134,7 +133,6 @@ function openPlayer(meditationId, updateUrl = true) {
     
     // Update player UI
     playerTitle.textContent = currentMeditation.description; // ${currentMeditation.id}`;
-    playerDate.textContent = new Date(currentMeditation.date).toLocaleDateString("en-GB");
     playerDescription.textContent = currentMeditation.longDescription;
     
     // Set audio source
